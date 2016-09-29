@@ -1,8 +1,10 @@
 package jaxrs;
 
 import Domain.Product;
+import Domain.ProductSpec;
 import Domain.Transaction;
 import Domain.TransactionFactory;
+import Properties.Name;
 import Properties.TransactionType;
 
 import javax.ws.rs.*;
@@ -12,7 +14,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Raymond Phua on 21-9-2016.
@@ -24,7 +28,25 @@ public class TransactionResource implements DefaultResource<Transaction>{
     @Context UriInfo uriInfo;
 
     public TransactionResource() {
+        //test transaction
 
+        if (transactions.size() == 0) {
+            TransactionFactory factory = new TransactionFactory();
+            Transaction t = factory.createTransaction(TransactionType.SALE);
+
+            Map properties = new HashMap();
+            properties.put("Name", Name.COLA);
+            ProductSpec spec = new ProductSpec(properties);
+            Product p1 = new Product(5, 4.5, 5, spec);
+
+            Map properties2 = new HashMap();
+            properties2.put("Name", Name.ICETEA);
+            ProductSpec spec2 = new ProductSpec(properties2);
+            Product p2 = new Product(6, 4.5, 5, spec2);
+            t.addProduct(p1);
+            t.addProduct(p2);
+            transactions.add(t);
+        }
     }
 
     @Override

@@ -55,14 +55,18 @@ public class ProductResource implements DefaultResource<Product> {
 
     @Override
     public Response add(Product product) {
+        System.out.println(product.getDigitCode());
+        System.out.println(product.getPrice());
+        System.out.println(product.getAmount());
         Map properties = new HashMap();
         properties.put("Name", Name.COLA);
         ProductSpec spec = new ProductSpec(properties);
 
         product.setProductSpec(spec);
-
+        System.out.println(product.getSpec());
         this.products.add(product);
-
+        System.out.println(products.size());
+        System.out.println(products.get(4));
         URI uri = URI.create(uriInfo.getAbsolutePath().toString() + "/" + product.getDigitCode());
 
         return Response.created(uri).build();
