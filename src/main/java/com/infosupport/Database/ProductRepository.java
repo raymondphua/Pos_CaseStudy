@@ -2,9 +2,7 @@ package com.infosupport.Database;
 
 import com.infosupport.Domain.Product;
 import com.infosupport.Domain.ProductSpec;
-import oracle.jdbc.pool.OracleDataSource;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,7 +45,8 @@ public class ProductRepository extends Database {
         try {
             Statement stmt = conn.createStatement();
 
-            String query = "INSERT INTO ";
+            String query = "INSERT INTO PRODUCTS (DIGITCODE, PRICE, AMOUNT, ADVANCE, FOR_KEY_DISCOUNT) " +
+                    "VALUES (" + "" + ")";
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

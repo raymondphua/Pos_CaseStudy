@@ -1,7 +1,5 @@
 package com.infosupport.Database;
 
-import oracle.jdbc.pool.OracleDataSource;
-
 import java.sql.*;
 
 /**
@@ -10,6 +8,11 @@ import java.sql.*;
 public abstract class Database {
 
     protected static Connection conn;
+
+    private static String jdbcURL = "jdbc:oracle:thin:@localhost:1521/XE";
+    private static String user = "phua";
+    private static String password = "admin";
+
     //protected static ProductRepository productRepository = new ProductRepository();
 
 //    public Database() {
@@ -20,10 +23,10 @@ public abstract class Database {
 
     protected static void getConnection() {
         try {
-            OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:phua/admin@localhost:1521/XE");
-            conn = ods.getConnection();
-        } catch (SQLException ex) {
+            Class.forName("oracle.jdbc.OracleDriver");
+
+            conn = DriverManager.getConnection(jdbcURL, user, password);
+        } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
     }
