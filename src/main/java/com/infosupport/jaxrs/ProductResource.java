@@ -1,6 +1,6 @@
 package com.infosupport.jaxrs;
 
-import com.infosupport.Database.Database;
+import com.infosupport.Database.ProductRepository;
 import com.infosupport.Domain.Product;
 import com.infosupport.Domain.ProductSpec;
 import com.infosupport.Properties.Name;
@@ -9,7 +9,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.crypto.Data;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -32,13 +31,13 @@ public class ProductResource implements DefaultResource<Product> {
     @Override
     public Response getOne(int id) {
         //Product product = products.stream().filter(p -> p.getDigitCode() == id).findFirst().orElseThrow(() -> new RuntimeException("error"));
-        Product product = Database.getProductRepository().getOneProduct(id);
+        Product product = ProductRepository.getOneProduct(id);
         return Response.ok(product).build();
     }
 
     @Override
     public Response getAll() {
-        products = Database.getProductRepository().getAllProducts();
+        products = ProductRepository.getAllProducts();
 
         if (products != null) {
             return Response.ok(this.products).build();

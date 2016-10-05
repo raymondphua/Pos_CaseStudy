@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Raymond Phua on 5-10-2016.
  */
-public class ProductRepository {
-
-    private static Connection conn;
+public class ProductRepository extends Database {
 
     public static List<Product> getAllProducts() {
         getConnection();
@@ -41,6 +39,18 @@ public class ProductRepository {
         }
 
         return null;
+    }
+
+    public static void addProduct(Product product) {
+        getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+
+            String query = "INSERT INTO "
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static Product getOneProduct(int digitcode) {
@@ -101,15 +111,5 @@ public class ProductRepository {
         }
 
         return foundProducts.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
-    }
-
-    private static void getConnection() {
-        try {
-            OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:phua/admin@localhost:1521/XE");
-            conn = ods.getConnection();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }
 }
