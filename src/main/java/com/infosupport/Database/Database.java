@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * Created by Raymond Phua on 3-10-2016.
  */
-public abstract class Database {
+public class Database {
 
     protected static Connection conn;
 
