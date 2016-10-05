@@ -1,4 +1,4 @@
-import Database.Database;
+import com.infosupport.Database.Database;
 
 import java.sql.SQLException;
 
@@ -8,6 +8,6 @@ import java.sql.SQLException;
 public class DatabaseTester {
 
     public static void main(String[] args) throws SQLException {
-        Database db = new Database();
+        new Database();
     }
 }

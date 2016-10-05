@@ -1,6 +1,6 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Domain.Discount;
+import com.infosupport.Domain.Discount;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
@@ -22,9 +22,9 @@ public class DiscountResource implements DefaultResource<Discount> {
     public DiscountResource() {
 
         if (discounts.size() == 0) {
-            this.discounts.add(new Discount(0.1));
-            this.discounts.add(new Discount(0.2));
-            this.discounts.add(new Discount(0.5));
+            discounts.add(new Discount(0.1));
+            discounts.add(new Discount(0.2));
+            discounts.add(new Discount(0.5));
         }
     }
 

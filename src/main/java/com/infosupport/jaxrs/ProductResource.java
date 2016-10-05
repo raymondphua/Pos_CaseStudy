@@ -1,16 +1,16 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Database.Database;
-import Domain.Product;
-import Domain.ProductSpec;
-import Properties.Name;
+import com.infosupport.Database.Database;
+import com.infosupport.Domain.Product;
+import com.infosupport.Domain.ProductSpec;
+import com.infosupport.Properties.Name;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.crypto.Data;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,37 +21,24 @@ import java.util.Map;
 @Path("/products")
 public class ProductResource implements DefaultResource<Product> {
 
-    private static List<Product> products;
+    private List<Product> products;
     @Context
     UriInfo uriInfo;
 
     public ProductResource() {
 
-//        if (products.size() == 0) {
-//            //hardcoded add
-//            Map properties = new HashMap();
-//            properties.put("Name", Name.COLA);
-//            products.add(new Product(1111, 1.5, 4, new ProductSpec(properties), false));
-//
-//            properties.clear();
-//            properties.put("Name", Name.ICETEA);
-//            products.add(new Product(2222, 2, 4, new ProductSpec(properties), false));
-//
-//            properties.clear();
-//            properties.put("Name", Name.MILK);
-//            products.add(new Product(3333, 1.25, 4, new ProductSpec(properties), false));
-//        }
     }
 
     @Override
     public Response getOne(int id) {
-        Product product = products.stream().filter(p -> p.getDigitCode() == id).findFirst().orElseThrow(() -> new RuntimeException("error"));
+        //Product product = products.stream().filter(p -> p.getDigitCode() == id).findFirst().orElseThrow(() -> new RuntimeException("error"));
+        Product product = Database.getProductRepository().getOneProduct(id);
         return Response.ok(product).build();
     }
 
     @Override
     public Response getAll() {
-        products = Database.getAllProducts();
+        products = Database.getProductRepository().getAllProducts();
 
         if (products != null) {
             return Response.ok(this.products).build();

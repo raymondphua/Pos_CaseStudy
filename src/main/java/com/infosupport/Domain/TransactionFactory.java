@@ -1,6 +1,6 @@
-package Domain;
+package com.infosupport.Domain;
 
-import Properties.TransactionType;
+import com.infosupport.Properties.TransactionType;
 
 /**
  * Created by Raymond Phua on 20-9-2016.

@@ -1,6 +1,8 @@
-package Domain;
+package com.infosupport.Domain;
 
 import lombok.Getter;
+
+import java.util.Random;
 
 /**
  * Created by Raymond Phua on 19-9-2016.
@@ -13,7 +15,8 @@ public class Discount {
     private double discountValue;
 
     public Discount(double discountValue) {
-        this.id = (int)Math.random();
+        Random random = new Random();
+        this.id = random.nextInt(100);
         this.discountValue = discountValue;
     }
 

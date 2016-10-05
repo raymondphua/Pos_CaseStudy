@@ -1,6 +1,7 @@
-package Domain;
+package com.infosupport.Domain;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class Session {
         double reservationTotal = 0;
         double refundTotal = 0;
 
+        endTime = LocalDateTime.now();
+
         for (Transaction t : transactions) {
             if (t instanceof Sale) {
                 salesAmount++;
@@ -52,6 +55,7 @@ public class Session {
         System.out.println("Details for: ");
         System.out.println("Kassa: " + kassa);
         System.out.println("Employee: " + employee.getUsername());
+        System.out.println("Time: " + hoursRun()) ;
         System.out.println("Total transactions: " + transactions.size());
         System.out.println();
         System.out.println("Sales transactions: " + salesAmount);
@@ -65,6 +69,10 @@ public class Session {
         System.out.println("Refund total: " + refundTotal);
         System.out.println();
         System.out.println("Total revenue: " + calculateTotalRevenue());
+    }
+
+    private int hoursRun() {
+        return (int)ChronoUnit.HOURS.between(startTime, endTime);
     }
 
     private void showReservations() {

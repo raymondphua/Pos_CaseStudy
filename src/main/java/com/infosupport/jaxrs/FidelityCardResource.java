@@ -1,11 +1,9 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Domain.FidelityCard;
+import com.infosupport.Domain.FidelityCard;
 
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Created by Raymond Phua on 22-9-2016.

@@ -1,4 +1,4 @@
-package Properties;
+package com.infosupport.Properties;
 
 /**
  * Created by Raymond Phua on 20-9-2016.

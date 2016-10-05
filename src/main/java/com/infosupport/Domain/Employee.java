@@ -1,4 +1,4 @@
-package Domain;
+package com.infosupport.Domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

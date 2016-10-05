@@ -2,8 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import Domain.*;
-import Properties.*;
+import com.infosupport.Domain.*;
+import com.infosupport.Properties.Name;
+import com.infosupport.Properties.TransactionType;
+
 /**
  * Created by Raymond Phua on 19-9-2016.
  */
@@ -14,8 +16,8 @@ public class WarehouseTester {
 
     public static void main(String[] args) {
 
-        Scanner reader = new Scanner(System.in);
-        Employee employee = new Employee(1, "admin", "admin");
+        int kassaId = 1;
+        Employee employee = new Employee(kassaId, "admin", "admin");
         Transaction transaction = null;
 
 

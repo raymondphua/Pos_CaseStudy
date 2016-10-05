@@ -1,8 +1,7 @@
-package Domain;
+package com.infosupport.Domain;
 
 import lombok.Getter;
 
-import javax.print.attribute.standard.Fidelity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

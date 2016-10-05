@@ -1,4 +1,4 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,30 +12,30 @@ public interface DefaultResource<T> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getOne(@PathParam("id") int id);
+    Response getOne(@PathParam("id") int id);
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getAll();
+    Response getAll();
 
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response add(T t);
+    Response add(T t);
 
     @PUT
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response update(T t);
+    Response update(T t);
 
     @DELETE
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response remove(@PathParam("id") int id);
+    Response remove(@PathParam("id") int id);
 
     @PUT
     @Path("id")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response cancel(int id);
+    Response cancel(int id);
 
 }

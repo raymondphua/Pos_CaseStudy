@@ -1,4 +1,4 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

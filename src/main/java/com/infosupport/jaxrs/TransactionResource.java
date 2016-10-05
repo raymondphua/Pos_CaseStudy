@@ -1,11 +1,11 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Domain.Product;
-import Domain.ProductSpec;
-import Domain.Transaction;
-import Domain.TransactionFactory;
-import Properties.Name;
-import Properties.TransactionType;
+import com.infosupport.Domain.Product;
+import com.infosupport.Domain.ProductSpec;
+import com.infosupport.Domain.Transaction;
+import com.infosupport.Domain.TransactionFactory;
+import com.infosupport.Properties.Name;
+import com.infosupport.Properties.TransactionType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -50,7 +50,7 @@ public class TransactionResource implements DefaultResource<Transaction>{
     }
 
     @Override
-    public Response getOne(@PathParam("id") int id) {
+    public Response getOne(int id) {
         Transaction transaction = transactions.stream().filter(t -> t.getId() == id).findFirst().orElseThrow(() -> new RuntimeException("error"));
         return Response.ok(transaction).build();
     }

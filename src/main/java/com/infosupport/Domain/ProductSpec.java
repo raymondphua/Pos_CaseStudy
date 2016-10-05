@@ -1,4 +1,4 @@
-package Domain;
+package com.infosupport.Domain;
 
 import java.util.HashMap;
 import java.util.Map;

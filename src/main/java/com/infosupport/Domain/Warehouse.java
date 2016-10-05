@@ -1,4 +1,4 @@
-package Domain;
+package com.infosupport.Domain;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package Domain;
+package com.infosupport.Domain;
 
 /**
  * Created by Raymond Phua on 19-9-2016.
  */
-public class Refund extends Transaction {
+public class Sale extends Transaction {
 
-    public Refund() {
+    public Sale() {
         super();
     }
 
@@ -14,12 +14,12 @@ public class Refund extends Transaction {
         System.out.println("*************************");
         System.out.println("Ending transaction...");
         System.out.println();
-        System.out.println("Following products refunded: ");
+        System.out.println("Following products sold: ");
         for(Product p : products) {
-            System.out.println(p.getSpec().getProperty("Name"));
+            System.out.println(p.getSpec().getProperty("Name") + " : " + p.getPrice());
         }
         System.out.println();
-        System.out.println("Total refund: " + this.total);
+        System.out.println("Total price: " + this.total);
         System.out.println("*************************");
     }
 }

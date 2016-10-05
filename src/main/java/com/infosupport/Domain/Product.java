@@ -1,8 +1,6 @@
-package Domain;
+package com.infosupport.Domain;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * Created by Raymond Phua on 19-9-2016.

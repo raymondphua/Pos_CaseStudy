@@ -1,8 +1,7 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Domain.Customer;
+import com.infosupport.Domain.Customer;
 
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -10,7 +9,7 @@ import javax.ws.rs.core.Response;
  * Created by Raymond Phua on 22-9-2016.
  */
 @Path("/customers")
-public class CustomerResource implements DefaultResource<Customer>{
+public class CustomerResource implements DefaultResource<Customer> {
 
     @Override
     public Response getOne(int id) {

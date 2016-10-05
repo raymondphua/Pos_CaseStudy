@@ -1,6 +1,6 @@
-package jaxrs;
+package com.infosupport.jaxrs;
 
-import Domain.Employee;
+import com.infosupport.Domain.Employee;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
