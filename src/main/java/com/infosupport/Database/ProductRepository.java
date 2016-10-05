@@ -47,7 +47,7 @@ public class ProductRepository extends Database {
         try {
             Statement stmt = conn.createStatement();
 
-            String query = "INSERT INTO "
+            String query = "INSERT INTO ";
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
