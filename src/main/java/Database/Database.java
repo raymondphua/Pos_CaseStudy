@@ -22,7 +22,6 @@ public class Database {
         for (Product product : getAllProducts()) {
             System.out.println(product.getDigitCode());
         }
-
     }
 
     private static void getConnection() {
