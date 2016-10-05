@@ -1,5 +1,6 @@
 package jaxrs;
 
+import Database.Database;
 import Domain.Product;
 import Domain.ProductSpec;
 import Properties.Name;
@@ -20,26 +21,26 @@ import java.util.Map;
 @Path("/products")
 public class ProductResource implements DefaultResource<Product> {
 
-    private static List<Product> products = new ArrayList<>();;
+    private static List<Product> products;
     @Context
     UriInfo uriInfo;
 
     public ProductResource() {
 
-        if (products.size() == 0) {
-            //hardcoded add
-            Map properties = new HashMap();
-            properties.put("Name", Name.COLA);
-            products.add(new Product(1111, 1.5, 4, new ProductSpec(properties)));
-
-            properties.clear();
-            properties.put("Name", Name.ICETEA);
-            products.add(new Product(2222, 2, 4, new ProductSpec(properties)));
-
-            properties.clear();
-            properties.put("Name", Name.MILK);
-            products.add(new Product(3333, 1.25, 4, new ProductSpec(properties)));
-        }
+//        if (products.size() == 0) {
+//            //hardcoded add
+//            Map properties = new HashMap();
+//            properties.put("Name", Name.COLA);
+//            products.add(new Product(1111, 1.5, 4, new ProductSpec(properties), false));
+//
+//            properties.clear();
+//            properties.put("Name", Name.ICETEA);
+//            products.add(new Product(2222, 2, 4, new ProductSpec(properties), false));
+//
+//            properties.clear();
+//            properties.put("Name", Name.MILK);
+//            products.add(new Product(3333, 1.25, 4, new ProductSpec(properties), false));
+//        }
     }
 
     @Override
@@ -50,26 +51,26 @@ public class ProductResource implements DefaultResource<Product> {
 
     @Override
     public Response getAll() {
-        return Response.ok(this.products).build();
+        products = Database.getAllProducts();
+
+        if (products != null) {
+            return Response.ok(this.products).build();
+        } else {
+            return Response.noContent().build();
+        }
     }
 
     @Override
     public Response add(Product product) {
-        System.out.println(product.getDigitCode());
-        System.out.println(product.getPrice());
-        System.out.println(product.getAmount());
         Map properties = new HashMap();
         properties.put("Name", Name.COLA);
         ProductSpec spec = new ProductSpec(properties);
-
         product.setProductSpec(spec);
-        System.out.println(product.getSpec());
-        this.products.add(product);
-        System.out.println(products.size());
-        System.out.println(products.get(4));
-        URI uri = URI.create(uriInfo.getAbsolutePath().toString() + "/" + product.getDigitCode());
 
-        return Response.created(uri).build();
+        products.add(product);
+        URI uri = URI.create(uriInfo.getAbsolutePath().toString() + product.getDigitCode());
+
+        return Response.created(uri).entity(product).build();
 }
 
     @Override

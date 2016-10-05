@@ -37,12 +37,12 @@ public class TransactionResource implements DefaultResource<Transaction>{
             Map properties = new HashMap();
             properties.put("Name", Name.COLA);
             ProductSpec spec = new ProductSpec(properties);
-            Product p1 = new Product(5, 4.5, 5, spec);
+            Product p1 = new Product(5, 4.5, 5, spec, false);
 
             Map properties2 = new HashMap();
             properties2.put("Name", Name.ICETEA);
             ProductSpec spec2 = new ProductSpec(properties2);
-            Product p2 = new Product(6, 4.5, 5, spec2);
+            Product p2 = new Product(6, 4.5, 5, spec2, false);
             t.addProduct(p1);
             t.addProduct(p2);
             transactions.add(t);
@@ -82,13 +82,14 @@ public class TransactionResource implements DefaultResource<Transaction>{
     }
 
     @POST
-    @Path("/{id}/product")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("/{id}/products")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response addProductToTransaction(@PathParam("id")int id, Product product) {
         Transaction transaction = transactions.stream().filter(t -> t.getId() == id).findFirst().orElseThrow(() -> new RuntimeException("404 Not Found"));
         transaction.addProduct(product);
 
-        return Response.ok(transaction).build();
+        URI uri = URI.create(uriInfo.getAbsolutePath().toString() + product.getDigitCode());
+        return Response.created(uri).entity(product).build();
     }
 
     @Override

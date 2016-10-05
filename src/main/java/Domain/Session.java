@@ -28,12 +28,62 @@ public class Session {
 
     //TODO: start + end time calculation + show
     public void showDetails() {
+        int salesAmount = 0;
+        int reservationAmount = 0;
+        int refundAmount = 0;
+
+        double salesTotal = 0;
+        double reservationTotal = 0;
+        double refundTotal = 0;
+
+        for (Transaction t : transactions) {
+            if (t instanceof Sale) {
+                salesAmount++;
+                salesTotal += t.getTotal();
+            } else if (t instanceof Reservation) {
+                reservationAmount++;
+                reservationTotal += t.getTotal();
+            } else {
+                refundAmount++;
+                refundTotal += t.getTotal();
+            }
+        }
+
         System.out.println("Details for: ");
         System.out.println("Kassa: " + kassa);
-        System.out.println("Domain.Employee: " + employee.getUsername());
-        System.out.println("Transactions: " + transactions.size());
+        System.out.println("Employee: " + employee.getUsername());
+        System.out.println("Total transactions: " + transactions.size());
+        System.out.println();
+        System.out.println("Sales transactions: " + salesAmount);
+        System.out.println("Sales total: " + salesTotal);
+        System.out.println();
+        System.out.println("Reservation transactions: " + reservationAmount);
+        showReservations();
+        System.out.println("Reservation total: " + reservationTotal);
+        System.out.println();
+        System.out.println("Refund transactions: " + refundAmount);
+        System.out.println("Refund total: " + refundTotal);
         System.out.println();
         System.out.println("Total revenue: " + calculateTotalRevenue());
+    }
+
+    private void showReservations() {
+        FidelityCard key = null;
+        System.out.println("Reservations for: ");
+        for (Transaction t : transactions) {
+            if (t instanceof Reservation) {
+                Reservation reservation = (Reservation) t;
+                for (FidelityCard fidelityCard : reservation.getReservedProducts().keySet()) {
+                    key = fidelityCard;
+                    System.out.println("customer: " + fidelityCard.getCustomer().getName());
+                    System.out.println("Card id: " + fidelityCard.getId());
+                }
+                System.out.println("Reserved products: ");
+                for (Product p : reservation.getReservedProducts().get(key)) {
+                    System.out.println(p.getSpec().getProperty("Name"));
+                }
+            }
+        }
     }
 
     private double calculateTotalRevenue() {

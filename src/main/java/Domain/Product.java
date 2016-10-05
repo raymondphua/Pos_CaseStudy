@@ -1,36 +1,41 @@
 package Domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Created by Raymond Phua on 19-9-2016.
  */
-@NoArgsConstructor
 public class Product {
 
+    @Getter
     private int digitCode;
     private double price;
+    @Getter
     private int amount;
+    @Getter
     private ProductSpec spec;
+    @Getter
     private Discount discount;
+    @Getter
+    private boolean advance;
 
+    public Product() {
+        this.discount = new Discount(0.1);
+    }
     //constructor
-    public Product(int digitCode, double price, int amount, ProductSpec spec) {
+    public Product(int digitCode, double price, int amount, ProductSpec spec, boolean advance) {
         this.digitCode = digitCode;
         this.price = price;
         this.amount = amount;
         this.spec = spec;
+        this.advance = advance;
 
         //for now, default discount value of 10% (0.1)
         this.discount = new Discount(0.1);
     }
 
-    public Product(int digitCode, double price, int amount) {
-        this.digitCode = digitCode;
-        this.price = price;
-        this.amount = amount;
-        this.discount = new Discount(0.1);
-    }
 
     public boolean matchesCode(int digitCode) {
         return this.digitCode == digitCode;
@@ -55,6 +60,10 @@ public class Product {
 
     public ProductSpec getSpec() {
         return this.spec;
+    }
+
+    public Discount getDiscount() {
+        return this.discount;
     }
 
     public void setProductSpec(ProductSpec spec) {

@@ -13,6 +13,7 @@ public class Discount {
     private double discountValue;
 
     public Discount(double discountValue) {
+        this.id = (int)Math.random();
         this.discountValue = discountValue;
     }
 

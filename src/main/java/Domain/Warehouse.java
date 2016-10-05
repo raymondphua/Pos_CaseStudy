@@ -20,8 +20,8 @@ public class Warehouse {
         return instance;
     }
 
-    public void addProduct(int digitCode, double price, int amount, ProductSpec spec) {
-        Product newProduct = new Product(digitCode, price, amount, spec);
+    public void addProduct(int digitCode, double price, int amount, ProductSpec spec, boolean advance) {
+        Product newProduct = new Product(digitCode, price, amount, spec, advance);
         warehouse.add(newProduct);
     }
 
